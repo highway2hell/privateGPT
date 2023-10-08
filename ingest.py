@@ -2,6 +2,8 @@
 import os
 import glob
 from typing import List
+
+import nltk
 from dotenv import load_dotenv
 from multiprocessing import Pool
 from tqdm import tqdm
@@ -151,6 +153,8 @@ def does_vectorstore_exist(persist_directory: str, embeddings: HuggingFaceEmbedd
     return True
 
 def main():
+    nltk.data.path.append('./nltk')
+
     # Create embeddings
     embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
     # Chroma client
